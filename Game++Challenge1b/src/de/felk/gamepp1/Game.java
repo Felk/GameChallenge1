@@ -1,7 +1,7 @@
 package de.felk.gamepp1;
 
 import de.felk.gamepp1.entities.EntityTest;
-import de.felk.gamepp1.entities.Position;
+import de.felk.gamepp1.entities.Vector;
 import de.felk.gamepp1.entities.Space;
 import de.felk.gamepp1.entities.Sprite;
 
@@ -25,7 +25,7 @@ public class Game {
 	public void start() {
 		// Hier beginnt das Programm
 
-		EntityTest entity = new EntityTest(new Space(new Position(0, 0), 1f, 0f, false), new Sprite());
+		EntityTest entity = new EntityTest(new Space(new Vector(0, 0), 1f, 0f, false), new Sprite());
 
 		try {
 			RenderEngine.init(800, 600);

@@ -2,23 +2,23 @@ package de.felk.gamepp1.entities;
 
 public class Space {
 
-	private Position position;
+	private Vector position;
 	private float scaling;
 	private float rotation;
 	private boolean flipped;
 
-	public Space(Position position, float scaling, float rotation, boolean flipped) {
+	public Space(Vector position, float scaling, float rotation, boolean flipped) {
 		this.setPosition(position);
 		this.setScaling(scaling);
 		this.setRotation(rotation);
 		this.setFlipped(flipped);
 	}
 
-	public Position getPosition() {
+	public Vector getPosition() {
 		return position;
 	}
 
-	public void setPosition(Position position) {
+	public void setPosition(Vector position) {
 		this.position = position;
 	}
 
