@@ -36,23 +36,6 @@ public class RenderEngine {
 	public static void setOrtho() {
 		glOrtho(0.0D, Display.getDisplayMode().getWidth(), 0.0D, Display.getDisplayMode().getHeight(), 1f, -1f);
 	}
-
-	public static void renderQuad(float x, float y, float width, float height) {
-		glBegin(GL_QUADS);
-
-		glTexCoord2f(0, 0);
-		glColor3f(0, 1, 0);
-		glVertex3f(x, y, -1);
-		glTexCoord2f(0, 1);
-		glVertex3f(x, y + height, -1);
-		glTexCoord2f(1, 1);
-		glVertex3f(x + width, y + height, -1);
-		glTexCoord2f(1, 0);
-		glVertex3f(x + width, y, -1);
-
-		glEnd();
-
-	}
 	
 	public static void disableTexture() {
 		glDisable(GL_TEXTURE_2D);
@@ -68,6 +51,18 @@ public class RenderEngine {
 	
 	public static void enableLighting() {
 		glDisable(GL_LIGHTING);
+	}
+	
+	public static void enableVSync() {
+		Display.setVSyncEnabled(true);
+	}
+	
+	public static void disableVSync() {
+		Display.setVSyncEnabled(false);
+	}
+	
+	public static void clearScreen() {
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	}
 
 }
