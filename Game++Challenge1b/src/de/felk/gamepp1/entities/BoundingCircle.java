@@ -1,5 +1,7 @@
 package de.felk.gamepp1.entities;
 
+import de.felk.gamepp1.RenderHelper;
+
 public class BoundingCircle extends Bounding {
 
 	private float radius;
@@ -28,6 +30,13 @@ public class BoundingCircle extends Bounding {
 	
 	public Vector getPosition() {
 		return position;
+	}
+
+	@Override
+	public void render(Vector position, Color color) {
+		BoundingCircle translated = translated(position);
+		RenderHelper.setColor(color);
+		RenderHelper.renderCircle(translated.getPosition().getX(), translated.getPosition().getY(), getRadius(), true);
 	}
 	
 }

@@ -2,7 +2,7 @@ package de.felk.gamepp1.entities;
 
 public class CollisionDetector {
 
-	public static boolean isColliding2(Bounding b1, Bounding b2) {
+	public static boolean isColliding(Bounding b1, Bounding b2) {
 		if (b1 instanceof BoundingCircle && b2 instanceof BoundingCircle) {
 			return isColliding((BoundingCircle) b1, (BoundingCircle) b2);
 		} else if (b1 instanceof BoundingCircle && b2 instanceof BoundingAABB) {

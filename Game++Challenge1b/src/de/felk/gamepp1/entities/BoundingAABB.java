@@ -1,5 +1,7 @@
 package de.felk.gamepp1.entities;
 
+import de.felk.gamepp1.RenderHelper;
+
 public class BoundingAABB extends Bounding {
 
 	private Vector a, b;
@@ -41,6 +43,16 @@ public class BoundingAABB extends Bounding {
 	@Override
 	public String toString() {
 		return "BoundingAABB(" + a.toString() + " - " + b.toString() + ")";
+	}
+
+	@Override
+	public void render(Vector position, Color color) {
+		BoundingAABB translated = translated(position);
+		float width = translated.getB().getX() - translated.getA().getX();
+		float height = translated.getB().getY() - translated.getA().getY();
+		
+		RenderHelper.setColor(color);
+		RenderHelper.renderQuad(translated.getA().getX(), translated.getA().getY(), width, height);
 	}
 
 }

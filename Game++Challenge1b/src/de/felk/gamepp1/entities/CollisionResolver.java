@@ -4,13 +4,19 @@ public class CollisionResolver {
 
 	public static void resolve(EntityPhysic e1, EntityPhysic e2) {
 
+		System.out.println("Old velocities: " + e1.getVelocity().toString() + " ~ " + e2.getVelocity().toString());
+
 		Vector v1 = e1.getVelocity();
 		Vector v2 = e2.getVelocity();
 
 		float sv1 = v1.getSlope();
 		float sv2 = v2.getSlope();
-		float sz = e2.getPosition().subtracted(e1.getPosition()).getSlope();
+		Vector z = e2.getPosition().subtracted(e1.getPosition());
+		//Vector t = new Vector(z.getY(), -z.getX());
+		float sz = z.getSlope();
+		if (e1.getBounding() instanceof BoundingAABB || e2.getBounding() instanceof BoundingAABB) sz = Float.MAX_VALUE;
 		float st = -1 / sz;
+		//float st = t.getSlope();
 
 		float xt1 = v1.getX() * ((sz - sv1) / (sz - st));
 		float yt1 = xt1 * st;
@@ -26,9 +32,6 @@ public class CollisionResolver {
 		float yz2 = xz2 * sz;
 		Vector z2 = new Vector(xz2, yz2);
 
-		//System.out.println(t1.toString() + ", " + t2.toString());
-		//System.out.println(z1.toString() + ", " + z2.toString());
-
 		Vector[] zs = stoss(e1.getInverseMass(), e2.getInverseMass(), z1, z2);
 		Vector zi1 = zs[0];
 		Vector zi2 = zs[1];
@@ -38,13 +41,7 @@ public class CollisionResolver {
 		e1.setVelocity(zi1);
 		e2.setVelocity(zi2);
 
-		// Formel für Stoß (1d)
-		/*Vector u = e1.getVelocity().multiplied(e2.getInverseMass());
-		u.add(e2.getVelocity().multiplied(e1.getInverseMass()));
-		u.multiply(2 / (e1.getInverseMass() + e2.getInverseMass()));
-
-		e1.setVelocity(u.subtracted(e1.getVelocity()));
-		e2.setVelocity(u.subtracted(e2.getVelocity()));*/
+		System.out.println("New velocities: " + e1.getVelocity().toString() + " ~ " + e2.getVelocity().toString());
 
 	}
 

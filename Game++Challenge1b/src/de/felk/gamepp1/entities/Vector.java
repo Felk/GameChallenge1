@@ -1,5 +1,7 @@
 package de.felk.gamepp1.entities;
 
+import de.felk.gamepp1.RenderHelper;
+
 public class Vector {
 
 	private float x;
@@ -78,7 +80,15 @@ public class Vector {
 		return value;
 	}
 
+	public Vector setValue(float v) {
+		multiply(v / getValue());
+		return this;
+	}
+
 	public float getSlope() {
+		if (x == y) return 1;
+		if (x == 0) return Float.MAX_VALUE;
+		if (y == 0) return Float.MIN_NORMAL;
 		return y / x;
 	}
 
@@ -90,6 +100,11 @@ public class Vector {
 	@Override
 	public String toString() {
 		return "(" + x + "|" + y + ")";
+	}
+
+	public void render(Vector offset) {
+		RenderHelper.setColor(1, 1, 0);
+		RenderHelper.renderLine(offset.getX(), offset.getY(), offset.getX() + x, offset.getY() + y);
 	}
 
 }
